@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bùi Thanh Lịch | Profile Chuyên Nghiệp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0f172a;
+            --accent: #3b82f6;
+            --mu-red: #da291c;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+            --bg: #f1f5f9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at top left, #e2e8f0, #f8fafc);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .profile-card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 100%;
+            max-width: 950px;
+            border-radius: 32px;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Cột trái */
+        .left-panel {
+            flex: 1;
+            background: var(--primary);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+
+        .avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 30px;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 24px;
+            transition: transform 0.4s ease;
+        }
+        .avatar:hover { transform: scale(1.05) rotate(2deg); }
+
+        .quote-box {
+            text-align: center;
+            font-weight: 300;
+            font-style: italic;
+            line-height: 1.6;
+            color: #94a3b8;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        /* Cột phải */
+        .right-panel {
+            flex: 1.8;
+            padding: 50px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .name-tag { font-size: 2.2rem; font-weight: 800; color: var(--primary); letter-spacing: -1px; }
+        .sub-title { color: var(--accent); font-weight: 700; font-size: 0.9rem; margin-bottom: 25px; display: block; text-transform: uppercase; }
+
+        .section-title { 
+            font-size: 1rem; 
+            margin: 30px 0 15px; 
+            color: var(--primary); 
+            font-weight: 800; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            text-transform: uppercase;
+        }
+        .section-title::after { content: ''; flex: 1; height: 1px; background: #e2e8f0; }
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .info-box { 
+            padding: 15px; 
+            background: #fff; 
+            border-radius: 16px; 
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+        .info-box span { display: block; font-size: 0.65rem; color: var(--text-sub); text-transform: uppercase; font-weight: 700; margin-bottom: 4px; }
+        .info-box p { font-weight: 600; font-size: 0.95rem; color: var(--primary); }
+
+        /* Sở trường */
+        .strengths-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .strength-tag {
+            background: #fff;
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+        .strength-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+        /* Sở thích */
+        .hobby-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .hobby-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            padding: 10px; 
+            background: #fff; 
+            border-radius: 16px;
+            border: 1px solid #f1f5f9;
+        }
+        .hobby-img-container { width: 60px; height: 60px; border-radius: 12px; overflow: hidden; flex-shrink: 0; }
+        .hobby-img-container img { width: 100%; height: 100%; object-fit: cover; }
+        .hobby-item h4 { font-size: 0.85rem; font-weight: 700; color: var(--primary); }
+        .hobby-item p { font-size: 0.75rem; color: var(--text-sub); }
+
+        /* MU Section */
+        .mu-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #fff 0%, #fff5f5 100%);
+            border-radius: 20px;
+            border-left: 5px solid var(--mu-red);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .mu-logo { width: 80px; height: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); }
+        .mu-content h4 { color: var(--mu-red); font-weight: 800; margin-bottom: 5px; }
+        .mu-content p { font-size: 0.8rem; line-height: 1.5; color: var(--text-main); }
+
+        /* Sách */
+        .book-card {
+            display: flex;
+            background: #fff;
+            border-radius: 20px;
+            padding: 15px;
+            gap: 15px;
+            align-items: center;
+            border: 1px solid #f1f5f9;
+        }
+        .book-img { width: 70px; height: 100px; border-radius: 8px; object-fit: cover; box-shadow: 5px 5px 15px rgba(0,0,0,0.1); }
+        .book-info h4 { font-size: 0.95rem; color: var(--primary); margin-bottom: 5px; }
+        .book-info p { font-size: 0.8rem; color: var(--text-sub); }
+
+        /* Nút Liên hệ */
+        .contact-methods { display: flex; gap: 10px; margin-top: 20px; }
+        .contact-btn {
+            flex: 1;
+            text-decoration: none; 
+            color: white; 
+            background: var(--primary);
+            padding: 12px; 
+            border-radius: 14px; 
+            font-size: 0.8rem;
+            font-weight: 700; 
+            display: flex; 
+            justify-content: center;
+            align-items: center; 
+            gap: 8px;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .contact-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
+        .btn-fb { background: #1877F2; }
+        .btn-zalo { background: #0068ff; }
+        .btn-mail { background: #ea4335; }
+
+        @media (max-width: 850px) {
+            .profile-card { flex-direction: column; }
+            .right-panel { padding: 30px; }
+            .hobby-grid { grid-template-columns: 1fr; }
+            .mu-section { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="profile-card">
+    <div class="left-panel">
+        <img src="anh-dai-dien.jpg" alt="Bùi Thanh Lịch" class="avatar">
+        <div class="quote-box">
+            <i class="fas fa-quote-left" style="opacity: 0.2; position: absolute; top: -10px; left: -20px; font-size: 2rem;"></i>
+            “Đừng chờ đợi cơ hội, hãy tự tạo ra nó.”
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <span class="sub-title">Học sinh lớp 12A1 • THPT Tây Sơn</span>
+        <h1 class="name-tag">Bùi Thanh Lịch</h1>
+        
+        <div class="info-grid">
+            <div class="info-box"><span>Ngày sinh</span><p>10/08/2008</p></div>
+            <div class="info-box"><span>Điện thoại</span><p>0819 369 708</p></div>
+        </div>
+
+        <h3 class="section-title"><i class="fas fa-star"></i> Sở trường</h3>
+        <div class="strengths-list">
+            <div class="strength-tag"><i class="fas fa-users"></i> Làm việc nhóm</div>
+            <div class="strength-tag"><i class="fas fa-gamepad"></i> Chơi game hay </div>
+            <div class="strength-tag"><i class="fas fa-brain"></i> Tư duy sáng tạo</div>
+        </div>
+
+        <h3 class="section-title"><i class="fas fa-heart"></i> Sở thích</h3>
+        <div class="hobby-grid">
+            <div class="hobby-item">
+                <div class="hobby-img-container"><img src="bong-da.jpg" alt="Football"></div>
+                <div>
+                    <h4>Xem bóng đá</h4>
+                    <p>Theo dõi các trận đấu và cổ vũ đội bóng yêu thích.</p>
+                </div>
+            </div>
+            <div class="hobby-item">
+                <div class="hobby-img-container"><img src="coding.jpg" alt="Tech"></div>
+                <div>
+                    <h4>Công nghệ</h4>
+                    <p>Tìm tòi các phần mềm mới.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mu-section">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7a/Manchester_United_FC_crest.svg/1200px-Manchester_United_FC_crest.svg.png" class="mu-logo" alt="MU">
+            <div class="mu-content">
+                <h4>Manchester United</h4>
+                <p>Manchester United là một câu lạc bộ bóng đá chuyên nghiệp có trụ sở tại Old Trafford, Greater Manchester, Anh. Họ là một trong những câu lạc bộ thành công nhất lịch sử bóng đá Anh, với bề dày truyền thống và lượng người hâm mộ khổng lồ trên toàn thế giới. Lịch sử của MU gắn liền với những huyền thoại và vô số danh hiệu cao quý.
+            Đội bóng với biệt danh "Quỷ Đỏ". Biểu tượng của ý chí quật cường và tinh thần không bao giờ bỏ cuộc tại Old Trafford.</p>
+            </div>
+        </div>
+
+        <h3 class="section-title"><i class="fas fa-book-open"></i> Sách tâm đắc</h3>
+        <div class="book-card">
+            <img src="sach.jpg" alt="Đắc Nhân Tâm" class="book-img">
+            <div class="book-info">
+                <h4>Đắc Nhân Tâm</h4>
+                <p>Cuốn sách dạy mình nghệ thuật thu phục lòng người và xây dựng các mối quan hệ bền vững.</p>
+            </div>
+        </div>
+
+        <h3 class="section-title"><i class="fas fa-paper-plane"></i> Kết nối với mình</h3>
+        <div class="contact-methods">
+            <a href="https://www.facebook.com/share/1AJjk7d1va/" target="_blank" class="contact-btn btn-fb">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://zalo.me/0819369708" target="_blank" class="contact-btn btn-zalo">
+                <i class="fas fa-comment"></i> Zalo
+            </a>
+            <a href="mailto:lichbui.10082008@gmail.com" class="contact-btn btn-mail">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
